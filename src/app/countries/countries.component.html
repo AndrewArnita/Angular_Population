@@ -1,0 +1,49 @@
+<ul class="list-group">
+  <div *ngFor="let country of data">
+    <li
+      class="list-group-item"
+      style="
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column-reverse;
+      "
+    >
+      <div>
+        <h5>
+          Population:
+          <span
+            *ngIf="country.population > population; else blue1"
+            style="color: red"
+          >
+            {{ country.population.toLocaleString() }} over
+            {{ population.toLocaleString() }}
+          </span>
+          <ng-template #blue1>
+            <span style="color: blue">
+              {{ country.population.toLocaleString() }}
+            </span>
+          </ng-template>
+        </h5>
+      </div>
+
+      <div
+        *ngIf="country.population > population; else blue2"
+        style="color: red"
+      >
+        <h4>{{ country.name }}</h4>
+      </div>
+
+      <ng-template #blue2>
+        <div style="color: blue">
+          <h4>{{ country.name }}</h4>
+        </div>
+      </ng-template>
+      <img
+        [src]="country.flag"
+        alt="flag"
+        style="width: 200px; height: 200px; border-radius: 50%"
+      />
+    </li>
+  </div>
+</ul>
